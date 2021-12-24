@@ -44,7 +44,6 @@ const usersPost = async (req, res) => {
     const usuario = new Usuario({nombre, correo, password, rol});
 
 
-
     //Encriptar contraseña
     const salt = bcrypt.genSaltSync();
     usuario.password = bcrypt.hashSync(password, salt);
@@ -86,14 +85,20 @@ const usersPatch = (req, res) => {
 
 const usersDelete = async(req, res) => {
     const { id } = req.params;
+
+    // const uid = req.uid; //si es necesario lo consultamos despues de la validacion del JWT.
+
     //Fisicamente lo borramos
     // const usuario = await Usuario.findByIdAndDelete(id);
 
     //ya se utiliza de esta manera
     const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
+    // const usuarioAutenticado = req.usuario; //si es necesario lo consultamos despues de la validacion del JWT.
+
 
     res.status(201).json({
-        usuario
+        usuario,
+        // usuarioAutenticado
     });
 };
 
