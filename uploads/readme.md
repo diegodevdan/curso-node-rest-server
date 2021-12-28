@@ -1,0 +1,3 @@
+# Nota
+
+AQUÍ SE VAN A GUARDAR LAS IMAGENES.
